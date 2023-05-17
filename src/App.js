@@ -46,8 +46,12 @@ function App() {
 
   const saveNewTask = (event) => {
     event.preventDefault();
-    const lastTask = tasks.slice(-1)
-    const newTaskObj = { id: lastTask[0].id + 1, name: newTask, priority: newPriority};
+    let idDefault = 0;
+    if (tasks.length !== 0) {
+      const lastTask = tasks.slice(-1)
+      idDefault = lastTask[0].id
+    }
+    const newTaskObj = { id: idDefault + 1, name: newTask, priority: newPriority};
     const nextItems = [...tasks, newTaskObj];
     setTask(nextItems);
     setNewTask("")
